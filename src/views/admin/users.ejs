@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Manage Users</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Manage Users</h1>
+    
+    <a href="/admin/dashboard" class="nav-link">← Back to Dashboard</a>
+    
+    <div class="search-container">
+      <form action="/admin/users" method="GET">
+        <input type="text" name="search" placeholder="Search by username or email" value="<%= searchTerm || '' %>">
+        <button type="submit" class="btn-primary">Search</button>
+        <a href="/admin/users" class="btn btn-secondary">Clear Search</a>
+      </form>
+    </div>
+    
+    <% if (users && users.length > 0) { %>
+      <ul>
+        <% users.forEach(user => { %>
+          <li>
+            <div>
+              <strong><%= user.username %></strong> 
+              (<%= user.email %>)
+            </div>
+            <div style="margin: 10px 0; color: #546e7a;">
+              Role: <span style="color: #2e7d32;"><%= user.role %></span> | 
+              Status: <span style="color: <%= user.isBlocked ? '#f44336' : '#4caf50' %>;">
+                <%= user.isBlocked ? 'Blocked' : 'Active' %>
+              </span> | 
+              Created: <%= user.createdAt.toDateString() %>
+            </div>
+            <div>
+              <a href="/admin/users/<%= user._id %>/edit" class="btn btn-edit">Edit</a>
+              
+              <% if (user.isBlocked) { %>
+                <form id="unblock-form-<%= user._id %>" action="/admin/users/<%= user._id %>/unblock" method="POST" style="display:inline;">
+                  <button type="button" class="btn-warning" onclick="confirmUnblock('<%= user._id %>', '<%= user.username %>')">Unblock</button>
+                </form>
+              <% } else { %>
+                <form id="block-form-<%= user._id %>" action="/admin/users/<%= user._id %>/block" method="POST" style="display:inline;">
+                  <button type="button" class="btn-warning" onclick="confirmBlock('<%= user._id %>', '<%= user.username %>')">Block</button>
+                </form>
+              <% } %>
+              
+              <form id="delete-form-<%= user._id %>" action="/admin/users/<%= user._id %>/delete" method="POST" style="display:inline;">
+                <button type="button" class="btn-delete" onclick="confirmDelete('<%= user._id %>', '<%= user.username %>')">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <div class="glass-card">
+        <p style="text-align: center; color: #546e7a;">No users found.</p>
+      </div>
+    <% } %>
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="/admin/users/add" class="btn btn-primary">+ Add New User</a>
+    </div>
+  </div>
+
+  <script>
+    // SweetAlert2 for Delete Confirmation
+    function confirmDelete(userId, username) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: `You are about to delete user "${username}". This action cannot be undone.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById(`delete-form-${userId}`).submit();
+        }
+      });
+    }
+
+    // SweetAlert2 for Block Confirmation
+    function confirmBlock(userId, username) {
+      Swal.fire({
+        title: 'Block User?',
+        text: `Are you sure you want to block user "${username}"? They will be unable to log in.`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#f0ad4e',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, block them!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById(`block-form-${userId}`).submit();
+        }
+      });
+    }
+
+    // SweetAlert2 for Unblock Confirmation
+    function confirmUnblock(userId, username) {
+      Swal.fire({
+        title: 'Unblock User?',
+        text: `Are you sure you want to unblock user "${username}"? They will regain access.`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5cb85c',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, unblock them!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById(`unblock-form-${userId}`).submit();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

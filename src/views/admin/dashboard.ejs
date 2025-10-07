@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    
+    <div class="dashboard-card">
+      <p>Welcome to the Admin Panel! Manage your users efficiently.</p>
+      <p>Options: Add, Search, Edit, Delete Users</p>
+      
+      <a href="/admin/users" class="btn btn-primary">Manage Users</a>
+      <br><br>
+      <a href="/logout" class="btn btn-secondary">Logout</a>
+    </div>
+  </div>
+
+  <script>
+    function checkSession() {
+      fetch('/check-session', {
+        method: 'GET',
+        credentials: 'include'
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.isAuthenticated || data.role !== 'admin') {
+            window.location.href = '/admin/login';
+          }
+        })
+        .catch(err => {
+          console.error('Session check failed:', err);
+          window.location.href = '/admin/login';
+        });
+    }
+
+    checkSession();
+
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        checkSession();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,651 @@
+/* ==================== Global Styles ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 50%, #f1f8f4 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #2d3748;
+}
+
+/* User Body - Different Background */
+body.user-body {
+  background: linear-gradient(135deg, #c8e6c9 0%, #e8f5e9 50%, #ffffff 100%);
+}
+
+/* ==================== Container ==================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================== Headers ==================== */
+h1 {
+  text-align: center;
+  color: #2e7d32;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(46, 125, 50, 0.1);
+  font-weight: 600;
+}
+
+h2 {
+  color: #388e3c;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #43a047;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+p {
+  line-height: 1.6;
+  color: #546e7a;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #66bb6a;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/* ==================== Glass Card Effect ==================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ==================== Forms ==================== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #c8e6c9;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  color: #2d3748;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  outline: none;
+  border-color: #66bb6a;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(102, 187, 106, 0.1);
+}
+
+input::placeholder {
+  color: #a5d6a7;
+}
+
+/* ==================== Buttons ==================== */
+button,
+.btn {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Primary Button (Green Glass) */
+button[type="submit"],
+.btn-primary {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(56, 142, 60, 0.9));
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+button[type="submit"]:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, rgba(56, 142, 60, 0.95), rgba(46, 125, 50, 0.95));
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2e7d32;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #c8e6c9;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #66bb6a;
+  transform: translateY(-2px);
+}
+
+/* Delete Button */
+.btn-delete {
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.9), rgba(211, 47, 47, 0.9));
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, rgba(211, 47, 47, 0.95), rgba(198, 40, 40, 0.95));
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Block/Unblock Button */
+.btn-warning {
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.9), rgba(245, 124, 0, 0.9));
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, rgba(245, 124, 0, 0.95), rgba(239, 108, 0, 0.95));
+  transform: translateY(-2px);
+}
+
+/* Edit Button */
+.btn-edit {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.9), rgba(25, 118, 210, 0.9));
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, rgba(25, 118, 210, 0.95), rgba(21, 101, 192, 0.95));
+  transform: translateY(-2px);
+}
+
+/* ==================== Links ==================== */
+a {
+  color: #388e3c;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2e7d32;
+  text-decoration: underline;
+}
+
+/* Navigation Links */
+.nav-link {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(200, 230, 201, 0.5);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+/* ==================== User List ==================== */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(200, 230, 201, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.1);
+  transform: translateY(-2px);
+}
+
+li strong {
+  color: #2e7d32;
+  font-size: 1.1rem;
+}
+
+li form {
+  display: inline;
+  margin-left: 10px;
+}
+
+/* ==================== Search Form ==================== */
+.search-container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(200, 230, 201, 0.5);
+}
+
+.search-container form {
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-container input[type="text"] {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-container button {
+  padding: 12px 24px;
+}
+
+/* ==================== Dashboard Cards ==================== */
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  margin: 20px 0;
+  text-align: center;
+}
+
+.dashboard-card p {
+  color: #546e7a;
+  margin: 15px 0;
+}
+
+.dashboard-card a {
+  margin: 10px;
+}
+
+/* ==================== Error Messages ==================== */
+.error-message {
+  background: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #f44336;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* ==================== Success Messages ==================== */
+.success-message {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #4caf50;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* ==================== USER SIDE SPECIFIC STYLES ==================== */
+
+/* User Auth Wrapper */
+.user-auth-wrapper {
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.auth-header {
+  margin-bottom: 30px;
+}
+
+.auth-header h1 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.user-card {
+  max-width: 100%;
+}
+
+/* Auth Links */
+.auth-links {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.auth-links p {
+  margin: 10px 0;
+  color: #546e7a;
+  font-size: 0.95rem;
+}
+
+.link-highlight {
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.link-highlight:hover {
+  color: #388e3c;
+}
+
+.admin-link {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(200, 230, 201, 0.3);
+}
+
+.admin-link a {
+  color: #7e57c2;
+  font-size: 0.9rem;
+}
+
+/* User Buttons */
+.btn-user-primary {
+  background: linear-gradient(135deg, rgba(102, 187, 106, 0.95), rgba(76, 175, 80, 0.95));
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(102, 187, 106, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.btn-user-primary:hover {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.98), rgba(56, 142, 60, 0.98));
+  box-shadow: 0 6px 25px rgba(102, 187, 106, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-user-secondary {
+  background: rgba(255, 255, 255, 0.95);
+  color: #2e7d32;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #c8e6c9;
+  padding: 10px 24px;
+  font-size: 15px;
+}
+
+.btn-user-secondary:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #66bb6a;
+  text-decoration: none;
+}
+
+/* User Header */
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 25px 35px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.user-welcome h1 {
+  text-align: left;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.user-welcome .subtitle {
+  text-align: left;
+  margin: 5px 0 0 0;
+  font-size: 1rem;
+}
+
+/* User Dashboard */
+.user-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Welcome Card */
+.welcome-card {
+  background: linear-gradient(135deg, rgba(102, 187, 106, 0.15), rgba(200, 230, 201, 0.15));
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.welcome-card .card-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.welcome-card h2 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.welcome-card p {
+  color: #546e7a;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Info Cards Grid */
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(46, 125, 50, 0.15);
+}
+
+.info-card .card-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.info-card h3 {
+  color: #2e7d32;
+  margin-bottom: 12px;
+}
+
+.info-card p {
+  color: #546e7a;
+  font-size: 0.95rem;
+  margin: 8px 0;
+}
+
+/* Action Card */
+.action-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.action-card h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.action-card p {
+  color: #546e7a;
+  margin-bottom: 20px;
+}
+
+/* ==================== Spacing Utilities ==================== */
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .glass-card {
+    padding: 25px;
+  }
+  
+  .search-container form {
+    flex-direction: column;
+  }
+  
+  .search-container input[type="text"] {
+    width: 100%;
+  }
+  
+  li form {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  button, .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .user-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .user-welcome h1 {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+
+  .user-welcome .subtitle {
+    text-align: center;
+  }
+
+  .btn-user-secondary {
+    width: 100%;
+  }
+
+  .info-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  .glass-card {
+    padding: 20px;
+  }
+
+  .user-header {
+    padding: 20px;
+  }
+
+  .welcome-card {
+    padding: 25px;
+  }
+
+  .info-card, .action-card {
+    padding: 20px;
+  }
+}
+
+/* ==================== Alert message Design ==================== */
+.swal2-popup {
+  font-family: Arial, sans-serif;
+}

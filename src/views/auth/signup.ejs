@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="user-body">
+  <div class="container">
+    <div class="user-auth-wrapper">
+      <div class="auth-header">
+        <h1>Create Account</h1>
+        <p class="subtitle">Join us today and get started</p>
+      </div>
+      
+      <div class="glass-card user-card">
+        <% if (error) { %>
+          <p class="error-message"><%= error %></p>
+        <% } %>
+        
+        <form action="/signup" method="POST">
+          <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Choose a username" required>
+          </div>
+          
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          
+          <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+          </div>
+          
+          <button type="submit" class="btn-user-primary">Sign Up</button>
+        </form>
+        
+        <div class="auth-links">
+          <p>Already have an account? <a href="/login" class="link-highlight">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
